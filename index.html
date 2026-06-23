@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MN Rush AAU Basketball | Boys & Girls Program</title>
+  <meta name="description" content="Highly competitive Boys & Girls AAU basketball program based Northwest of the Twin Cities. #RunAsOne">
+  <meta property="og:title" content="MN Rush AAU Basketball">
+  <meta property="og:description" content="Elite Boys & Girls AAU Basketball in the Northwest Metro">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mnrush.com">
+  <meta name="theme-color" content="#000000">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --blue: #0055A5;
+      --blue-light: #0070D4;
+      --blue-glow: rgba(0, 85, 165, 0.35);
+      --gray-50: #FAFAFA;
+      --gray-100: #F2F2F2;
+      --gray-200: #E5E5E5;
+      --gray-400: #999999;
+      --gray-600: #666666;
+      --gray-800: #222222;
+      --gray-900: #111111;
+      --font-head: 'Oswald', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--gray-900);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ====== POP-UP / ANNOUNCEMENT BANNER ====== */
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 1; transition: opacity 0.35s;
+    }
+    .popup-overlay.hidden { opacity: 0; pointer-events: none; }
+    .popup {
+      background: var(--white); border-radius: 16px;
+      max-width: 480px; width: 100%;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+      transform: scale(1); transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .popup-overlay.hidden .popup { transform: scale(0.9); }
+    .popup-accent {
+      height: 5px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+    }
+    .popup-body { padding: 2rem 2rem 1.5rem; text-align: center; }
+    .popup-body h2 {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1.6rem; text-transform: uppercase;
+      letter-spacing: 0.02em; margin-bottom: 0.75rem;
+    }
+    .popup-body p {
+      color: var(--gray-600); font-size: 0.95rem; line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .popup-body .popup-cta {
+      display: inline-block; background: var(--blue); color: var(--white);
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .popup-body .popup-cta:hover { background: var(--blue-light); }
+    .popup-close {
+      display: block; margin-top: 1rem;
+      background: none; border: none; color: var(--gray-400);
+      font-size: 0.85rem; cursor: pointer; padding: 0.5rem;
+    }
+    .popup-close:hover { color: var(--gray-800); }
+
+    /* Announcement strip (top bar - always visible) */
+    .announce-bar {
+      background: var(--black); color: var(--white);
+      text-align: center; padding: 0.6rem 1.5rem;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.03em;
+    }
+    .announce-bar a { color: var(--blue-light); text-decoration: none; font-weight: 600; }
+    .announce-bar a:hover { text-decoration: underline; }
+
+    /* ====== NAV ====== */
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.8rem 2rem;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .nav-logo img { height: 42px; }
+    .nav-links { display: flex; gap: 0.15rem; align-items: center; }
+    .nav-links a {
+      font-family: var(--font-head); font-weight: 500;
+      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--gray-800); text-decoration: none;
+      padding: 0.5rem 0.75rem; border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); background: var(--gray-100); }
+    .nav-links a.nav-cta {
+      background: var(--blue); color: var(--white); margin-left: 0.5rem;
+      padding: 0.5rem 1.25rem;
+    }
+    .nav-links a.nav-cta:hover { background: var(--blue-light); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--black);
+      border-radius: 2px; transition: 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+        flex-direction: column; background: var(--white);
+        padding: 5rem 2rem; gap: 0.25rem;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -8px 0 40px rgba(0,0,0,0.1);
+      }
+      .nav-links.open { right: 0; }
+      .nav-links a { font-size: 1.05rem; padding: 0.75rem 1rem; width: 100%; }
+      .nav-links a.nav-cta { margin-left: 0; margin-top: 0.5rem; text-align: center; }
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      background: var(--black); color: var(--white);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.85) 100%);
+      z-index: 1;
+    }
+    /* Diagonal blue slash accent */
+    .hero::after {
+      content: ''; position: absolute;
+      top: -20%; right: -5%; width: 40%; height: 140%;
+      background: var(--blue);
+      transform: skewX(-12deg);
+      opacity: 0.08; z-index: 1;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+      padding: 8rem 2rem 5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-text { max-width: 560px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-head); font-weight: 500;
+      font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--blue-light); margin-bottom: 1.5rem;
+    }
+    .hero-tag::before {
+      content: ''; width: 24px; height: 2px; background: var(--blue);
+    }
+    .hero h1 {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: clamp(3rem, 7vw, 5rem);
+      line-height: 0.95; text-transform: uppercase;
+      letter-spacing: -0.01em; margin-bottom: 1.5rem;
+    }
+    .hero h1 .stroke {
+      -webkit-text-stroke: 1.5px var(--white); color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--gray-400);
+      line-height: 1.7; margin-bottom: 2.5rem; max-width: 440px;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-logo-large {
+      width: 320px; height: 320px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-logo-large img { width: 200px; filter: brightness(1.1); }
+    .hero-logo-large::after {
+      content: ''; position: absolute; inset: -12px;
+      border: 1px solid rgba(0, 85, 165, 0.2); border-radius: 50%;
+    }
+
+    .hero-stats {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 2rem 4rem;
+      display: flex; gap: 3rem;
+    }
+    .hero-stat { }
+    .hero-stat-num {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 2.5rem; color: var(--white);
+    }
+    .hero-stat-label {
+      font-size: 0.75rem; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.12em;
+    }
+
+    @media (max-width: 860px) {
+      .hero-content { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
+      .hero-visual { display: none; }
+      .hero-stats { gap: 2rem; padding-bottom: 3rem; flex-wrap: wrap; }
+    }
+
+    /* ====== BUTTONS ====== */
+    .btn {
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 0.85rem 1.8rem; border-radius: 6px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-blue {
+      background: var(--blue); color: var(--white);
+      box-shadow: 0 4px 20px var(--blue-glow);
+    }
+    .btn-blue:hover { background: var(--blue-light); }
+    .btn-white {
+      background: var(--white); color: var(--black);
+    }
+    .btn-white:hover { background: var(--gray-100); }
+    .btn-outline-white {
+      border: 1.5px solid rgba(255,255,255,0.25); color: var(--white);
+      background: transparent;
+    }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+    .btn-outline-dark {
+      border: 1.5px solid var(--gray-200); color: var(--gray-800);
+      background: transparent;
+    }
+    .btn-outline-dark:hover { border-color: var(--blue); color: var(--blue); }
+    .btn-black {
+      background: var(--black); color: var(--white);
+    }
+    .btn-black:hover { background: var(--gray-800); }
+
+    /* ====== SECTIONS ====== */
+    section { padding: 6rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;
+      color: var(--blue); margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::before { content: ''; width: 20px; height: 2px; background: var(--blue); }
+    .section-title {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 3rem); text-transform: uppercase;
+      line-height: 1.05; margin-bottom: 1rem;
+      color: var(--black);
+    }
+    .section-desc {
+      color: var(--gray-600); font-size: 1rem; line-height: 1.7;
+      max-width: 560px;
+    }
+    .bg-light { background: var(--gray-50); }
+    .bg-black { background: var(--black); color: var(--white); }
+    .bg-black .section-title { color: var(--white); }
+    .bg-black .section-desc { color: var(--gray-400); }
+
+    /* ====== PILLARS ====== */
+    .pillars {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .pillar {
+      padding: 2rem; border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .pillar:hover {
+      border-color: var(--blue); transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 85, 165, 0.08);
+    }
+    .pillar-num {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 2.5rem; color: var(--gray-200);
+      margin-bottom: 1rem; line-height: 1;
+    }
+    .pillar:hover .pillar-num { color: var(--blue); }
+    .pillar h3 {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1.15rem; text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .pillar p { color: var(--gray-600); font-size: 0.92rem; line-height: 1.65; }
+    @media (max-width: 768px) { .pillars { grid-template-columns: 1fr; } }
+
+    /* ====== WHY RUSH ====== */
+    .why-rush-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      margin-top: 3rem; align-items: start;
+    }
+    .why-rush-left {}
+    .why-rush-quote {
+      font-family: var(--font-head); font-weight: 500;
+      font-size: 1.35rem; line-height: 1.45;
+      color: var(--white); margin-bottom: 1.5rem;
+      position: relative; padding-left: 1.5rem;
+      border-left: 3px solid var(--blue);
+    }
+    .why-rush-quote em { font-style: normal; color: var(--blue-light); }
+    .why-rush-attr {
+      font-size: 0.85rem; color: var(--gray-400);
+      padding-left: 1.5rem;
+    }
+    .why-values {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .why-value {
+      padding: 1.25rem; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      transition: border-color 0.3s;
+    }
+    .why-value:hover { border-color: var(--blue); }
+    .why-value h4 {
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 0.9rem; text-transform: uppercase;
+      color: var(--white); margin-bottom: 0.4rem;
+    }
+    .why-value p { font-size: 0.82rem; color: var(--gray-400); line-height: 1.55; }
+    .why-rush-right {}
+    .why-identity {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .why-identity h3 {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1.1rem; text-transform: uppercase;
+      color: var(--white); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .why-identity h3::before {
+      content: ''; width: 16px; height: 2px; background: var(--blue);
+    }
+    .why-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1rem; border-radius: 6px;
+      background: rgba(0, 85, 165, 0.12);
+      color: var(--blue-light); font-size: 0.82rem;
+      font-weight: 600; margin-bottom: 0.5rem; margin-right: 0.5rem;
+    }
+    .why-promise {
+      margin-top: 1.5rem; padding: 1.5rem;
+      background: var(--blue); border-radius: 12px;
+      text-align: center;
+    }
+    .why-promise p {
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 1rem; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--white);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .why-rush-grid { grid-template-columns: 1fr; }
+      .why-values { grid-template-columns: 1fr; }
+    }
+
+    /* ====== PROGRAMS ====== */
+    .programs-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .program-card {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--gray-900);
+      transition: transform 0.3s;
+    }
+    .program-card:hover { transform: translateY(-4px); }
+    .program-top {
+      padding: 2.5rem 2rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .program-top h3 {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1.8rem; text-transform: uppercase; color: var(--white);
+    }
+    .program-top .sub { color: var(--gray-400); font-size: 0.85rem; margin-top: 0.25rem; }
+    .program-body { padding: 1.5rem 2rem 2rem; }
+    .pdetail {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 0.65rem; font-size: 0.9rem;
+    }
+    .pdetail-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--blue); flex-shrink: 0;
+    }
+    .pdetail strong { color: var(--white); }
+    .pdetail span { color: var(--gray-400); }
+    .program-btns { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .program-btns .btn { font-size: 0.8rem; padding: 0.6rem 1.3rem; }
+    @media (max-width: 768px) { .programs-grid { grid-template-columns: 1fr; } }
+
+    /* ====== SCHEDULE ====== */
+    .calendar-wrap {
+      margin-top: 2.5rem; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--gray-200);
+    }
+    .calendar-wrap iframe { width: 100%; height: 550px; border: none; }
+    .calendar-placeholder {
+      height: 400px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1rem;
+      background: var(--gray-50); color: var(--gray-600);
+      text-align: center; padding: 2rem;
+    }
+    .calendar-placeholder .icon { font-size: 3rem; }
+    .calendar-placeholder h3 {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1.2rem; text-transform: uppercase; color: var(--black);
+    }
+    .calendar-placeholder p { font-size: 0.9rem; max-width: 360px; line-height: 1.6; }
+    .calendar-sub {
+      margin-top: 1rem; font-size: 0.85rem; color: var(--gray-600);
+    }
+    .calendar-sub a { color: var(--blue); text-decoration: none; font-weight: 600; }
+
+    /* ====== PHOTO GALLERY ====== */
+    .gallery-grid {
+      margin-top: 2.5rem;
+      columns: 3; column-gap: 1rem;
+    }
+    .gallery-item {
+      break-inside: avoid; margin-bottom: 1rem;
+      border-radius: 10px; overflow: hidden;
+      position: relative; cursor: pointer;
+      background: var(--gray-200);
+    }
+    .gallery-item img {
+      width: 100%; display: block;
+      transition: transform 0.4s;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.4) 100%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+    @media (max-width: 768px) { .gallery-grid { columns: 2; } }
+    @media (max-width: 480px) { .gallery-grid { columns: 1; } }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 9998;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+      padding: 2rem;
+    }
+    .lightbox.active { opacity: 1; pointer-events: auto; }
+    .lightbox img {
+      max-width: 90vw; max-height: 85vh;
+      border-radius: 8px; object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none; color: var(--white);
+      font-size: 2rem; cursor: pointer; padding: 0.5rem;
+      line-height: 1;
+    }
+
+    /* ====== SOCIAL / FACEBOOK EMBED ====== */
+    .social-section { text-align: center; }
+    .social-grid {
+      margin-top: 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      align-items: start;
+    }
+    .social-grid > div { display: flex; flex-direction: column; align-items: center; }
+    .fb-embed-wrap {
+      width: 100%; max-width: 500px;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--gray-200);
+    }
+    .social-links-panel {
+      background: var(--gray-50); border-radius: 12px;
+      padding: 2.5rem; width: 100%; max-width: 500px;
+      border: 1px solid var(--gray-200);
+    }
+    .social-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--gray-200);
+      text-decoration: none; color: var(--gray-800);
+      transition: color 0.2s;
+    }
+    .social-link:last-child { border-bottom: none; }
+    .social-link:hover { color: var(--blue); }
+    .social-link-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--black); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
+    }
+    .social-link-icon.fb { background: #1877F2; }
+    .social-link-icon.ig { background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737); }
+    .social-link-icon.tw { background: var(--black); }
+    .social-link-icon.yt { background: #FF0000; }
+    .social-link div { text-align: left; }
+    .social-link strong {
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 0.95rem; text-transform: uppercase;
+      display: block;
+    }
+    .social-link span { font-size: 0.8rem; color: var(--gray-400); }
+    @media (max-width: 768px) { .social-grid { grid-template-columns: 1fr; } }
+
+    /* ====== DIRECTORS ====== */
+    .directors-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .director-card {
+      border: 1px solid var(--gray-200); border-radius: 14px;
+      padding: 2.5rem; background: var(--white);
+      transition: border-color 0.3s;
+    }
+    .director-card:hover { border-color: var(--blue); }
+    .director-role {
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em;
+      color: var(--blue); margin-bottom: 0.5rem;
+    }
+    .director-name {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .director-card p { color: var(--gray-600); font-size: 0.9rem; line-height: 1.65; margin-bottom: 0.75rem; }
+    .director-contact { margin-top: 1rem; font-size: 0.9rem; }
+    .director-contact a { color: var(--blue); text-decoration: none; font-weight: 600; }
+    .director-contact a:hover { text-decoration: underline; }
+    @media (max-width: 768px) { .directors-grid { grid-template-columns: 1fr; } }
+
+    /* ====== REGISTRATION ====== */
+    .reg-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .reg-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 2.5rem;
+      background: var(--gray-900); text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .reg-card:hover { border-color: var(--blue); transform: translateY(-4px); }
+    .reg-card h3 {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1.4rem; text-transform: uppercase; color: var(--white); margin-bottom: 0.75rem;
+    }
+    .reg-card p { color: var(--gray-400); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.75rem; }
+    .reg-card .btn { width: 100%; justify-content: center; }
+    @media (max-width: 768px) { .reg-grid { grid-template-columns: 1fr; } }
+
+    /* ====== FAQ ====== */
+    .faq-list { margin-top: 2.5rem; max-width: 700px; }
+    .faq-item { border-bottom: 1px solid var(--gray-200); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--gray-900);
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.02em;
+      padding: 1.25rem 0; text-align: left; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-q::after {
+      content: '+'; font-size: 1.4rem; color: var(--blue);
+      transition: transform 0.3s; flex-shrink: 0; margin-left: 1rem;
+    }
+    .faq-item.open .faq-q::after { content: '−'; }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a p {
+      color: var(--gray-600); font-size: 0.92rem; line-height: 1.65;
+      padding-bottom: 1.25rem;
+    }
+    .faq-a a { color: var(--blue); text-decoration: none; font-weight: 600; }
+
+    /* ====== CONTACT ====== */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      margin-top: 3rem;
+    }
+    .contact-item {
+      display: flex; gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .contact-icon {
+      flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px;
+      background: var(--gray-100);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .contact-item h4 {
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 0.9rem; text-transform: uppercase; margin-bottom: 0.2rem;
+    }
+    .contact-item p { color: var(--gray-600); font-size: 0.88rem; }
+    .contact-item a { color: var(--blue); text-decoration: none; font-weight: 500; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 0.85rem; }
+    .form-row { display: flex; gap: 0.85rem; }
+    .form-row > * { flex: 1; }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%; background: var(--gray-50);
+      border: 1px solid var(--gray-200); border-radius: 8px;
+      padding: 0.85rem 1rem; color: var(--gray-900);
+      font-family: var(--font-body); font-size: 0.92rem;
+      transition: border-color 0.2s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+      outline: none; border-color: var(--blue);
+    }
+    .contact-form textarea { resize: vertical; min-height: 110px; }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--gray-400); }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { flex-direction: column; }
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      background: var(--black); color: var(--white);
+      padding: 4rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem;
+    }
+    .footer-brand p { color: var(--gray-400); font-size: 0.85rem; line-height: 1.6; margin-top: 1rem; }
+    .footer-brand img { height: 38px; }
+    .footer-col h4 {
+      font-family: var(--font-head); font-weight: 600;
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--gray-400); margin-bottom: 1rem;
+    }
+    .footer-col a {
+      display: block; color: var(--gray-400); text-decoration: none;
+      font-size: 0.88rem; margin-bottom: 0.5rem; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1100px; margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--gray-600);
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    /* ====== ANIMATIONS ====== */
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    section[id] { scroll-margin-top: 60px; }
+  </style>
+</head>
+<body>
+
+  <!-- ====== POP-UP ANNOUNCEMENT ====== -->
+  <!--
+    =============================================
+    HOW TO EDIT THE POP-UP:
+    =============================================
+    1. Change the h2, p, and link text/href below
+    2. To DISABLE the pop-up, add class "hidden" to the popup-overlay div
+    3. To show it again, remove "hidden"
+    4. The pop-up shows once per session (sessionStorage)
+  -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <div class="popup-accent"></div>
+      <div class="popup-body">
+        <h2>Fall Tryouts Coming Soon</h2>
+        <p>Girls program tryouts for the upcoming season are right around the corner. Follow us on social media for exact dates and locations.</p>
+        <a href="#programs" class="popup-cta" onclick="closePopup()">View Programs &rarr;</a>
+        <button class="popup-close" onclick="closePopup()">Dismiss</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== ANNOUNCEMENT BAR ====== -->
+  <!--
+    Edit this line to change the top-of-page announcement.
+    To hide it, delete or comment out the entire div.
+  -->
+  <div class="announce-bar">
+    🏀 &nbsp; 2026 Spring Season is underway! &nbsp;<a href="#schedule">View the schedule &rarr;</a>
+  </div>
+
+  <!-- ====== NAV ====== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="images/logo.png" alt="MN Rush">
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#why">Why Rush</a>
+        <a href="#programs">Programs</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#gallery">Photos</a>
+        <a href="#coaches">Coaches</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.mamatgear.com/rush-basketball" target="_blank">Store</a>
+        <a href="#register" class="nav-cta">Register</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-tag">Est. 2017 &mdash; Northwest Metro</div>
+        <h1>
+          Minnesota<br>
+          <span class="stroke">Rush</span><br>
+          Basketball
+        </h1>
+        <p class="hero-sub">
+          Elite boys &amp; girls AAU basketball based in the 
+          St. Michael-Albertville area. Developing athletes for 
+          competitive success at every level.
+        </p>
+        <div class="hero-btns">
+          <a href="#programs" class="btn btn-blue">Explore Programs &rarr;</a>
+          <a href="#register" class="btn btn-outline-white">Register &amp; Pay</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-logo-large">
+          <img src="images/logo.png" alt="MN Rush Logo">
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">9+</div>
+        <div class="hero-stat-label">Years</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">3rd–11th</div>
+        <div class="hero-stat-label">Grades</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">15+</div>
+        <div class="hero-stat-label">Teams</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">#RunAsOne</div>
+        <div class="hero-stat-label">Motto</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT ====== -->
+  <section id="about" class="bg-light">
+    <div class="section-inner fade-up">
+      <div class="section-label">Our Program</div>
+      <div class="section-title">Built on Development.<br>Driven by Competition.</div>
+      <p class="section-desc">
+        Founded in 2017, Minnesota Rush is focused on skill development and 
+        competitive excellence. Our coaches help young athletes achieve their 
+        dreams in basketball and beyond.
+      </p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <h3>Skill Development</h3>
+          <p>Focused training tailored to each athlete's strengths and growth areas. We build technical skills, basketball IQ, and physical conditioning.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <h3>Exposure &amp; Competition</h3>
+          <p>Top-tier opportunities on the Prep Hoops Circuit. We showcase talent and cultivate an atmosphere of intense, meaningful competition.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <h3>Experienced Coaching</h3>
+          <p>Coaches who mentor and inspire — many coach high school basketball and bring deep expertise and understanding of the athlete's journey.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== WHY RUSH ====== -->
+  <section id="why" class="bg-black">
+    <div class="section-inner fade-up">
+      <div class="section-label">Why Rush</div>
+      <div class="section-title">This Isn't Your<br>Typical AAU Program.</div>
+      <div class="why-rush-grid">
+        <div class="why-rush-left">
+          <div class="why-rush-quote">
+            "We built this program because developing players fundamentally, building IQ, and 
+            fostering real competition matters more than anything. Too much of AAU basketball has 
+            become <em>about shortcuts and exposure over actual development</em>. We don't buy into 
+            that. 4th–9th grade basketball should be about growing as an individual player, 
+            growing in a team setting with different teammates, and building a genuine love 
+            for the game — while competing hard every single time out."
+          </div>
+          <div class="why-rush-attr">— Minnesota Rush Coaching Staff</div>
+          <div class="why-values">
+            <div class="why-value">
+              <h4>Effort Over Talent</h4>
+              <p>We outwork opponents regardless of size, rankings, or hype.</p>
+            </div>
+            <div class="why-value">
+              <h4>Team &gt; Individual</h4>
+              <p>Stats never outweigh winning plays. Selfless basketball, always.</p>
+            </div>
+            <div class="why-value">
+              <h4>Growth Mindset</h4>
+              <p>We teach, correct, and develop. Mistakes are part of progress.</p>
+            </div>
+            <div class="why-value">
+              <h4>Accountability</h4>
+              <p>Players and coaches hold each other to standards. No exceptions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="why-rush-right">
+          <div class="why-identity">
+            <h3>How We Play</h3>
+            <div>
+              <span class="why-tag">🏃 High Tempo</span>
+              <span class="why-tag">🛡 Relentless Defense</span>
+              <span class="why-tag">🎯 Smart Shot Selection</span>
+              <span class="why-tag">🏀 Player-First Development</span>
+              <span class="why-tag">📋 Organized Systems</span>
+              <span class="why-tag">💪 Toughness</span>
+            </div>
+          </div>
+          <div class="why-identity">
+            <h3>What We Build</h3>
+            <div>
+              <span class="why-tag">Tough Competitors</span>
+              <span class="why-tag">Smart Decision-Makers</span>
+              <span class="why-tag">Confident Shot-Takers</span>
+              <span class="why-tag">High-IQ Players</span>
+            </div>
+          </div>
+          <div class="why-identity">
+            <h3>Our Coaching Standard</h3>
+            <div>
+              <span class="why-tag">Teacher First, Coach Second</span>
+              <span class="why-tag">Correct Loudly, Praise Louder</span>
+              <span class="why-tag">Development &gt; Short-Term Wins</span>
+              <span class="why-tag">No Gimmicks</span>
+            </div>
+          </div>
+          <div class="why-promise">
+            <p>Every game against the Rush<br>will be a battle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PROGRAMS ====== -->
+  <section id="programs" class="bg-black">
+    <div class="section-inner fade-up">
+      <div class="section-label">Teams</div>
+      <div class="section-title">Boys &amp; Girls Programs</div>
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-top">
+            <h3>Boys Program</h3>
+            <div class="sub">Director: Trevor Walton</div>
+          </div>
+          <div class="program-body">
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Season:&nbsp;</strong><span>April – July</span></div>
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Grades:&nbsp;</strong><span>3rd – 11th (9U-17U)</span></div>
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Practice:&nbsp;</strong><span>Twice weekly, evenings, STMA area</span></div>
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Circuit:&nbsp;</strong><span>Prep Hoops (12U+), MYAS & AAU</span></div>
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Tournaments:&nbsp;</strong><span>6-9 per season</span></div>
+            <div class="program-btns">
+              <a href="mailto:mnrush@yahoo.com" class="btn btn-blue">Contact &rarr;</a>
+              <a href="#register" class="btn btn-outline-white">Pay Fees</a>
+            </div>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-top">
+            <h3>Girls Program</h3>
+            <div class="sub">Director: James Bezanson</div>
+          </div>
+          <div class="program-body">
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Season:&nbsp;</strong><span>April – Early June</span></div>
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Grades:&nbsp;</strong><span>4th – 9th</span></div>
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Practice:&nbsp;</strong><span>1-2x per week, STMA area</span></div>
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Circuit:&nbsp;</strong><span>AAU Events at all levels</span></div>
+            <div class="pdetail"><div class="pdetail-dot"></div><strong>Tournaments:&nbsp;</strong><span>6-7 in-state per season</span></div>
+            <div class="program-btns">
+              <a href="mailto:jbezanson22@gmail.com" class="btn btn-blue">Contact &rarr;</a>
+              <a href="#register" class="btn btn-outline-white">Pay Fees</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SCHEDULE ====== -->
+  <section id="schedule">
+    <div class="section-inner fade-up">
+      <div class="section-label">Schedule</div>
+      <div class="section-title">Practices &amp; Tournaments</div>
+      <p class="section-desc">
+        All practice times and tournament dates in one place. Subscribe to stay updated on your phone.
+      </p>
+      <div class="calendar-wrap">
+        <!--
+          GOOGLE CALENDAR SETUP:
+          1. Create a public calendar at calendar.google.com
+          2. Settings > Integrate calendar > copy Calendar ID
+          3. Replace the placeholder below with:
+          <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=America%2FChicago" width="100%" height="550" frameborder="0" scrolling="no"></iframe>
+        -->
+        <div class="calendar-placeholder">
+          <div class="icon">📅</div>
+          <h3>Calendar Coming Soon</h3>
+          <p>Practice schedules and tournament dates will appear here. Follow us on social media for the latest updates.</p>
+        </div>
+      </div>
+      <div class="calendar-sub">
+        📱 <a href="#">Subscribe to this calendar</a> to get updates on your phone automatically.
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PHOTO GALLERY ====== -->
+  <section id="gallery" class="bg-light">
+    <div class="section-inner fade-up">
+      <div class="section-label">Gallery</div>
+      <div class="section-title">Game Day</div>
+      <p class="section-desc">Photos by Daryl Boeckers</p>
+
+      <!--
+        =============================================
+        HOW TO UPDATE PHOTOS:
+        =============================================
+        1. Add your images to the /images/gallery/ folder in your GitHub repo
+        2. Add a new gallery-item div below with an img tag pointing to it
+        3. Mix tall and wide photos for the best masonry layout
+        4. Commit to GitHub and Vercel auto-deploys
+        
+        For now, placeholder images show the layout.
+        Replace the src values with your actual photo paths like:
+        <img src="images/gallery/spring-showdown-2026.jpg" alt="Spring Showdown 2026">
+      -->
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://img1.wsimg.com/isteam/ip/d17a78e8-b35a-478d-bf4b-6e181b4c5367/2026%20MN%20Rush%20Spring%20Showdown%20BloomJFK%20APR%2018-5.jpg/:/rs=w:600" alt="MN Rush Spring Showdown 2026" loading="lazy">
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://img1.wsimg.com/isteam/ip/d17a78e8-b35a-478d-bf4b-6e181b4c5367/2026%20MN%20Rush%20Spring%20Showdown%20BloomJFK%20-45c5555.jpg/:/rs=w:600" alt="MN Rush Girls Basketball" loading="lazy">
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://img1.wsimg.com/isteam/ip/d17a78e8-b35a-478d-bf4b-6e181b4c5367/DSC00489.JPG/:/rs=w:600" alt="MN Rush Game Day" loading="lazy">
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://img1.wsimg.com/isteam/ip/d17a78e8-b35a-478d-bf4b-6e181b4c5367/image_123650291(10).JPG/:/rs=w:600" alt="MN Rush Championship" loading="lazy">
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://img1.wsimg.com/isteam/ip/d17a78e8-b35a-478d-bf4b-6e181b4c5367/image_123650291(9).JPG/:/rs=w:600" alt="MN Rush Boys Team" loading="lazy">
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://img1.wsimg.com/isteam/ip/d17a78e8-b35a-478d-bf4b-6e181b4c5367/image_123650291(3).JPG/:/rs=w:600" alt="MN Rush Player" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close">&times;</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <!-- ====== SOCIAL / FACEBOOK ====== -->
+  <section id="social">
+    <div class="section-inner fade-up">
+      <div class="section-label">Follow the Rush</div>
+      <div class="section-title">Stay Connected</div>
+      <p class="section-desc">Follow us for game highlights, tournament results, roster announcements, and more.</p>
+      <div class="social-grid">
+        <div>
+          <div class="fb-embed-wrap">
+            <!--
+              FACEBOOK PAGE EMBED SETUP:
+              =============================================
+              1. Go to: https://developers.facebook.com/docs/plugins/page-plugin/
+              2. Enter your page URL: https://www.facebook.com/MinnesotaRush
+              3. Check "Use Small Header", set width to 500, tabs to "timeline"
+              4. Click "Get Code" and copy the iframe version
+              5. Replace the placeholder below with that iframe
+              
+              Example (replace with your generated code):
+            -->
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMinnesotaRush&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true" 
+              width="500" height="600" style="border:none;overflow:hidden;width:100%;" 
+              scrolling="no" frameborder="0" allowfullscreen="true" 
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+        <div>
+          <div class="social-links-panel">
+            <a href="https://www.facebook.com/MinnesotaRush" target="_blank" class="social-link">
+              <div class="social-link-icon fb">FB</div>
+              <div>
+                <strong>Facebook</strong>
+                <span>Minnesota Rush Basketball</span>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/trevor_walton23" target="_blank" class="social-link">
+              <div class="social-link-icon ig">IG</div>
+              <div>
+                <strong>Instagram</strong>
+                <span>@trevor_walton23</span>
+              </div>
+            </a>
+            <a href="https://www.x.com/minnesotarush" target="_blank" class="social-link">
+              <div class="social-link-icon tw">X</div>
+              <div>
+                <strong>X / Twitter</strong>
+                <span>@minnesotarush</span>
+              </div>
+            </a>
+            <a href="https://www.youtube.com/@MNRush-wu1dx" target="_blank" class="social-link">
+              <div class="social-link-icon yt">YT</div>
+              <div>
+                <strong>YouTube</strong>
+                <span>MN Rush Basketball</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== COACHES ====== -->
+  <section id="coaches" class="bg-light">
+    <div class="section-inner fade-up">
+      <div class="section-label">Leadership</div>
+      <div class="section-title">Program Directors</div>
+      <div class="directors-grid">
+        <div class="director-card">
+          <div class="director-role">Boys Program Director</div>
+          <div class="director-name">Trevor Walton</div>
+          <p>A 2010 graduate and former player at Maple Grove High School, Trevor is the Varsity Assistant for Rogers Boys Basketball and former head coach of North Branch Boys Basketball.</p>
+          <p>Trevor realized the potential of a program in the Northwest Metro along I-94, sparking the creation of MN Rush in 2017.</p>
+          <div class="director-contact">
+            ✉️ <a href="mailto:mnrush@yahoo.com">mnrush@yahoo.com</a>
+          </div>
+        </div>
+        <div class="director-card">
+          <div class="director-role">Girls Program Director</div>
+          <div class="director-name">James Bezanson</div>
+          <p>James took on the girls director role after coaching at the 13U and 14U levels. Previously a Varsity Assistant for North Branch Boys Basketball and currently the High Jump Coach for STMA Track &amp; Field.</p>
+          <p>James identified the opportunity to build a high-quality girls' program in the Northwest Metro.</p>
+          <div class="director-contact">
+            ✉️ <a href="mailto:jbezanson22@gmail.com">jbezanson22@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:1.5rem;color:var(--gray-600);font-size:0.9rem;">
+        Interested in coaching? 
+        <a href="https://forms.gle/cPoMHsTkNVwVu2Jb8" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;">Fill out our coaching application &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== REGISTRATION ====== -->
+  <section id="register" class="bg-black">
+    <div class="section-inner fade-up">
+      <div class="section-label">Registration</div>
+      <div class="section-title">Season Fees &amp; Payments</div>
+      <p class="section-desc">Pay your season fees securely online.</p>
+      <div class="reg-grid">
+        <div class="reg-card">
+          <h3>Boys Season Fee</h3>
+          <p>Covers tournaments, gym time, coaching, and jerseys for the season.</p>
+          <!-- Replace # with your Stripe Payment Link: https://buy.stripe.com/your-link -->
+          <a href="#" class="btn btn-blue">Pay Boys Fee &rarr;</a>
+        </div>
+        <div class="reg-card">
+          <h3>Girls Season Fee</h3>
+          <p>Covers tournaments, gym time, coaching, and jerseys for the season.</p>
+          <!-- Replace # with your Stripe Payment Link -->
+          <a href="#" class="btn btn-blue">Pay Girls Fee &rarr;</a>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--gray-400);font-size:0.82rem;margin-top:1.5rem;">
+        Payments processed securely through Stripe. Questions? 
+        <a href="mailto:mnrush@yahoo.com" style="color:var(--blue-light);">Contact us</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section id="faq">
+    <div class="section-inner fade-up">
+      <div class="section-label">FAQ</div>
+      <div class="section-title">Common Questions</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">Where are you located?</button>
+          <div class="faq-a"><p>St. Michael-Albertville and surrounding areas, just northwest of the Twin Cities along I-94.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How competitive is your program?</button>
+          <div class="faq-a"><p>Our boys teams compete on the Prep Hoops Circuit and in Prep Hoops NEXT, plus AAU events (7th grade and up). Younger teams play a mix of MYAS and AAU tournaments.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you hold tryouts?</button>
+          <div class="faq-a"><p>We typically don't hold tryouts for 13U+ as those teams are recruited. We do hold tryouts for 4th-6th grade teams. Want to be scouted? <a href="mailto:mnrush@yahoo.com">Reach out to us</a>.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What grades can join?</button>
+          <div class="faq-a"><p>Boys and girls teams from 3rd grade through 11th grade (9U-17U).</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Are you looking for coaches?</button>
+          <div class="faq-a"><p>Always. Fill out our <a href="https://forms.gle/cPoMHsTkNVwVu2Jb8" target="_blank">pre-screening application</a> and we'll reach out.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">I have a full roster — can I coach under Rush?</button>
+          <div class="faq-a"><p>Absolutely. Reach out and we'll get you set up with player forms, coaching responsibilities, and help build a tournament schedule.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What's the player questionnaire?</button>
+          <div class="faq-a"><p>All rostered players fill out a form with basic player/parent info, uniform sizes, and basketball info. Your coach will provide this after you make a team.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section id="contact" class="bg-light">
+    <div class="section-inner fade-up">
+      <div class="section-label">Get in Touch</div>
+      <div class="section-title">Contact Us</div>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h4>Location</h4>
+              <p>St. Michael-Albertville area<br>Northwest Twin Cities, MN</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <h4>Boys Program</h4>
+              <p><a href="mailto:mnrush@yahoo.com">mnrush@yahoo.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <h4>Girls Program</h4>
+              <p><a href="mailto:jbezanson22@gmail.com">jbezanson22@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📋</div>
+            <div>
+              <h4>Coach With Us</h4>
+              <p><a href="https://forms.gle/cPoMHsTkNVwVu2Jb8" target="_blank">Coaching Application &rarr;</a></p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!--
+            CONTACT FORM: Replace YOUR_FORM_ID with your Formspree ID
+            Sign up free at formspree.io (50 submissions/month)
+            Or swap for a Google Form embed
+          -->
+          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-row">
+              <input type="text" name="name" placeholder="Name" required>
+              <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <input type="tel" name="phone" placeholder="Phone (optional)">
+            <select name="inquiry" required>
+              <option value="" disabled selected>What's this about?</option>
+              <option value="boys">Boys Program</option>
+              <option value="girls">Girls Program</option>
+              <option value="coaching">Coaching Interest</option>
+              <option value="scouting">Scout My Player</option>
+              <option value="roster">I Have a Full Roster</option>
+              <option value="other">Other</option>
+            </select>
+            <textarea name="message" placeholder="Your message..." rows="4" required></textarea>
+            <button type="submit" class="btn btn-black" style="border:none;justify-content:center;">Send Message &rarr;</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="MN Rush">
+        <p>Highly competitive Boys &amp; Girls AAU basketball in the Northwest Twin Cities metro. Developing athletes for success at every level since 2017.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Program</h4>
+        <a href="#about">About</a>
+        <a href="#programs">Boys</a>
+        <a href="#programs">Girls</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#register">Register</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.mamatgear.com/rush-basketball" target="_blank">Team Store</a>
+        <a href="https://forms.gle/cPoMHsTkNVwVu2Jb8" target="_blank">Coach Application</a>
+      </div>
+      <div class="footer-col">
+        <h4>Social</h4>
+        <a href="https://www.facebook.com/MinnesotaRush" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/trevor_walton23" target="_blank">Instagram</a>
+        <a href="https://www.x.com/minnesotarush" target="_blank">X / Twitter</a>
+        <a href="https://www.youtube.com/@MNRush-wu1dx" target="_blank">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Minnesota Rush. All Rights Reserved.</span>
+      <span>#RunAsOne</span>
+    </div>
+  </footer>
+
+  <script>
+    // ====== POP-UP ======
+    // Shows once per session. Edit the popup HTML above to change content.
+    function closePopup() {
+      document.getElementById('popupOverlay').classList.add('hidden');
+      sessionStorage.setItem('rush_popup_closed', '1');
+    }
+    if (sessionStorage.getItem('rush_popup_closed')) {
+      document.getElementById('popupOverlay').classList.add('hidden');
+    }
+    // To completely disable the popup, uncomment the next line:
+    // document.getElementById('popupOverlay').classList.add('hidden');
+
+    // ====== MOBILE NAV ======
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ====== FAQ ACCORDION ======
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // ====== LIGHTBOX ======
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ====== SCROLL ANIMATIONS ======
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
