@@ -3,13 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MN Rush AAU Basketball | Boys & Girls Program</title>
-  <meta name="description" content="Highly competitive Boys & Girls AAU basketball program based Northwest of the Twin Cities. #RunAsOne">
-  <meta property="og:title" content="MN Rush AAU Basketball">
-  <meta property="og:description" content="Elite Boys & Girls AAU Basketball in the Northwest Metro">
+  <title>MN Rush AAU Basketball | Boys & Girls Youth Basketball | STMA, MN</title>
+  <meta name="description" content="Minnesota Rush AAU Basketball — elite boys & girls youth basketball program serving St. Michael-Albertville, Rogers, Elk River, Buffalo and the Northwest Twin Cities metro. Grades 3rd-11th. Prep Hoops Circuit. #RunAsOne">
+  <meta name="keywords" content="AAU basketball Minnesota, youth basketball STMA, boys basketball northwest metro, girls basketball St Michael Albertville, MN Rush basketball, Prep Hoops Minnesota, AAU basketball near me, travel basketball Minnesota">
+  <meta property="og:title" content="MN Rush AAU Basketball | Boys & Girls Program">
+  <meta property="og:description" content="Elite boys & girls AAU basketball in the Northwest Twin Cities metro. Developing athletes for success at every level since 2017.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mnrush.com">
+  <meta property="og:image" content="https://mnrush.com/images/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@minnesotarush">
+  <meta name="twitter:title" content="MN Rush AAU Basketball">
+  <meta name="twitter:description" content="Elite boys & girls AAU basketball in the Northwest Twin Cities metro.">
+  <link rel="canonical" href="https://mnrush.com">
   <meta name="theme-color" content="#000000">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsOrganization",
+    "name": "Minnesota Rush AAU Basketball",
+    "alternateName": "MN Rush",
+    "url": "https://mnrush.com",
+    "logo": "https://mnrush.com/images/logo.png",
+    "sport": "Basketball",
+    "foundingDate": "2017",
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 45.2096, "longitude": -93.6641 },
+      "geoRadius": "50 mi"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "St. Michael",
+      "addressRegion": "MN",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.facebook.com/MinnesotaRush",
+      "https://www.instagram.com/trevor_walton23",
+      "https://www.x.com/minnesotarush",
+      "https://www.youtube.com/@MNRush-wu1dx"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -111,7 +147,7 @@
       padding: 0.8rem 2rem;
     }
     .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-    .nav-logo img { height: 42px; }
+    .nav-logo img { height: 56px; }
     .nav-links { display: flex; gap: 0.15rem; align-items: center; }
     .nav-links a {
       font-family: var(--font-head); font-weight: 500;
@@ -162,9 +198,12 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background:
-        linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.85) 100%);
-      z-index: 1;
+      background: url('images/gallery/midwest-timeout.jpg') center center / cover no-repeat;
+      z-index: 0;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.92) 100%);
     }
     /* Diagonal blue slash accent */
     .hero::after {
@@ -208,18 +247,15 @@
     .hero-visual {
       display: flex; justify-content: center; align-items: center;
     }
-    .hero-logo-large {
-      width: 320px; height: 320px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+    .hero-photo {
+      width: 380px; height: 480px;
+      border-radius: 16px; overflow: hidden;
+      border: 2px solid rgba(0, 85, 165, 0.3);
       position: relative;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
     }
-    .hero-logo-large img { width: 200px; filter: brightness(1.1); }
-    .hero-logo-large::after {
-      content: ''; position: absolute; inset: -12px;
-      border: 1px solid rgba(0, 85, 165, 0.2); border-radius: 50%;
+    .hero-photo img {
+      width: 100%; height: 100%; object-fit: cover;
     }
 
     .hero-stats {
@@ -743,7 +779,7 @@
     To hide it, delete or comment out the entire div.
   -->
   <div class="announce-bar">
-    🏀 &nbsp; 2026 Spring Season is underway! &nbsp;<a href="#schedule">View the schedule &rarr;</a>
+    &nbsp; 2026 Spring Season is underway! &nbsp;<a href="#schedule">View the schedule &rarr;</a>
   </div>
 
   <!-- ====== NAV ====== -->
@@ -787,13 +823,14 @@
           competitive success at every level.
         </p>
         <div class="hero-btns">
-          <a href="#programs" class="btn btn-blue">Explore Programs &rarr;</a>
+          <a href="#programs" class="btn btn-blue">Boys Program &rarr;</a>
+          <a href="#programs" class="btn btn-outline-white">Girls Program &rarr;</a>
           <a href="#register" class="btn btn-outline-white">Register &amp; Pay</a>
         </div>
       </div>
       <div class="hero-visual">
-        <div class="hero-logo-large">
-          <img src="images/logo.png" alt="MN Rush Logo">
+        <div class="hero-photo">
+          <img src="images/gallery/showdown-huddle.jpg" alt="MN Rush Girls Team Huddle">
         </div>
       </div>
     </div>
@@ -886,12 +923,12 @@
           <div class="why-identity">
             <h3>How We Play</h3>
             <div>
-              <span class="why-tag">🏃 High Tempo</span>
-              <span class="why-tag">🛡 Relentless Defense</span>
-              <span class="why-tag">🎯 Smart Shot Selection</span>
-              <span class="why-tag">🏀 Player-First Development</span>
-              <span class="why-tag">📋 Organized Systems</span>
-              <span class="why-tag">💪 Toughness</span>
+              <span class="why-tag">High Tempo</span>
+              <span class="why-tag">Relentless Defense</span>
+              <span class="why-tag"> Smart Shot Selection</span>
+              <span class="why-tag">Player-First Development</span>
+              <span class="why-tag">Organized Systems</span>
+              <span class="why-tag">Toughness</span>
             </div>
           </div>
           <div class="why-identity">
@@ -911,9 +948,6 @@
               <span class="why-tag">Development &gt; Short-Term Wins</span>
               <span class="why-tag">No Gimmicks</span>
             </div>
-          </div>
-          <div class="why-promise">
-            <p>Every game against the Rush<br>will be a battle.</p>
           </div>
         </div>
       </div>
@@ -938,7 +972,7 @@
             <div class="pdetail"><div class="pdetail-dot"></div><strong>Circuit:&nbsp;</strong><span>Prep Hoops (12U+), MYAS & AAU</span></div>
             <div class="pdetail"><div class="pdetail-dot"></div><strong>Tournaments:&nbsp;</strong><span>6-9 per season</span></div>
             <div class="program-btns">
-              <a href="mailto:mnrush@yahoo.com" class="btn btn-blue">Contact &rarr;</a>
+              <a href="mailto:boys@mnrush.com" class="btn btn-blue">Contact &rarr;</a>
               <a href="#register" class="btn btn-outline-white">Pay Fees</a>
             </div>
           </div>
@@ -955,7 +989,7 @@
             <div class="pdetail"><div class="pdetail-dot"></div><strong>Circuit:&nbsp;</strong><span>AAU Events at all levels</span></div>
             <div class="pdetail"><div class="pdetail-dot"></div><strong>Tournaments:&nbsp;</strong><span>6-7 in-state per season</span></div>
             <div class="program-btns">
-              <a href="mailto:jbezanson22@gmail.com" class="btn btn-blue">Contact &rarr;</a>
+              <a href="mailto:girls@mnrush.com" class="btn btn-blue">Contact &rarr;</a>
               <a href="#register" class="btn btn-outline-white">Pay Fees</a>
             </div>
           </div>
@@ -981,13 +1015,13 @@
           <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=America%2FChicago" width="100%" height="550" frameborder="0" scrolling="no"></iframe>
         -->
         <div class="calendar-placeholder">
-          <div class="icon">📅</div>
+          <div class="icon"></div>
           <h3>Calendar Coming Soon</h3>
           <p>Practice schedules and tournament dates will appear here. Follow us on social media for the latest updates.</p>
         </div>
       </div>
       <div class="calendar-sub">
-        📱 <a href="#">Subscribe to this calendar</a> to get updates on your phone automatically.
+        <a href="#">Subscribe to this calendar</a> to get updates on your phone automatically.
       </div>
     </div>
   </section>
@@ -1189,7 +1223,7 @@
           <p>A 2010 graduate and former player at Maple Grove High School, Trevor is the Varsity Assistant for Rogers Boys Basketball and former head coach of North Branch Boys Basketball.</p>
           <p>Trevor realized the potential of a program in the Northwest Metro along I-94, sparking the creation of MN Rush in 2017.</p>
           <div class="director-contact">
-            ✉️ <a href="mailto:mnrush@yahoo.com">mnrush@yahoo.com</a>
+             <a href="mailto:boys@mnrush.com">boys@mnrush.com</a>
           </div>
         </div>
         <div class="director-card">
@@ -1198,7 +1232,7 @@
           <p>James took on the girls director role after coaching at the 13U and 14U levels. Previously a Varsity Assistant for North Branch Boys Basketball and currently the High Jump Coach for STMA Track &amp; Field.</p>
           <p>James identified the opportunity to build a high-quality girls' program in the Northwest Metro.</p>
           <div class="director-contact">
-            ✉️ <a href="mailto:jbezanson22@gmail.com">jbezanson22@gmail.com</a>
+             <a href="mailto:girls@mnrush.com">girls@mnrush.com</a>
           </div>
         </div>
       </div>
@@ -1231,7 +1265,7 @@
       </div>
       <p style="text-align:center;color:var(--gray-400);font-size:0.82rem;margin-top:1.5rem;">
         Payments processed securely through Stripe. Questions? 
-        <a href="mailto:mnrush@yahoo.com" style="color:var(--blue-light);">Contact us</a>.
+        <a href="mailto:boys@mnrush.com" style="color:var(--blue-light);">Contact us</a>.
       </p>
     </div>
   </section>
@@ -1252,7 +1286,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q">Do you hold tryouts?</button>
-          <div class="faq-a"><p>We typically don't hold tryouts for 13U+ as those teams are recruited. We do hold tryouts for 4th-6th grade teams. Want to be scouted? <a href="mailto:mnrush@yahoo.com">Reach out to us</a>.</p></div>
+          <div class="faq-a"><p>We typically don't hold tryouts for 13U+ as those teams are recruited. We do hold tryouts for 4th-6th grade teams. Want to be scouted? <a href="mailto:boys@mnrush.com">Reach out to us</a>.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">What grades can join?</button>
@@ -1282,28 +1316,28 @@
       <div class="contact-grid">
         <div>
           <div class="contact-item">
-            <div class="contact-icon">📍</div>
+            <div class="contact-icon"></div>
             <div>
               <h4>Location</h4>
               <p>St. Michael-Albertville area<br>Northwest Twin Cities, MN</p>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-icon">✉️</div>
+            <div class="contact-icon"></div>
             <div>
               <h4>Boys Program</h4>
-              <p><a href="mailto:mnrush@yahoo.com">mnrush@yahoo.com</a></p>
+              <p><a href="mailto:boys@mnrush.com">boys@mnrush.com</a></p>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-icon">✉️</div>
+            <div class="contact-icon"></div>
             <div>
               <h4>Girls Program</h4>
-              <p><a href="mailto:jbezanson22@gmail.com">jbezanson22@gmail.com</a></p>
+              <p><a href="mailto:girls@mnrush.com">girls@mnrush.com</a></p>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-icon">📋</div>
+            <div class="contact-icon"></div>
             <div>
               <h4>Coach With Us</h4>
               <p><a href="https://forms.gle/cPoMHsTkNVwVu2Jb8" target="_blank">Coaching Application &rarr;</a></p>
