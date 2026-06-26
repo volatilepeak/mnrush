@@ -217,9 +217,8 @@
       position: relative; z-index: 2;
       max-width: 1200px; margin: 0 auto;
       padding: 8rem 2rem 5rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
     }
-    .hero-text { max-width: 560px; }
+    .hero-text { max-width: 620px; }
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.5rem;
       font-family: var(--font-head); font-weight: 500;
@@ -603,6 +602,13 @@
       transition: border-color 0.3s;
     }
     .director-card:hover { border-color: var(--blue); }
+    .director-photo {
+      width: 100%; height: 220px; border-radius: 10px;
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .director-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+    }
     .director-role {
       font-family: var(--font-head); font-weight: 600;
       font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em;
@@ -793,7 +799,6 @@
         <a href="#why">Why Rush</a>
         <a href="#programs">Programs</a>
         <a href="#schedule">Schedule</a>
-        <a href="#gallery">Photos</a>
         <a href="#coaches">Coaches</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
@@ -823,14 +828,9 @@
           competitive success at every level.
         </p>
         <div class="hero-btns">
-          <a href="#programs" class="btn btn-blue">Boys Program &rarr;</a>
-          <a href="#programs" class="btn btn-outline-white">Girls Program &rarr;</a>
+          <a href="boys.html" class="btn btn-blue">Boys Program &rarr;</a>
+          <a href="girls.html" class="btn btn-outline-white">Girls Program &rarr;</a>
           <a href="#register" class="btn btn-outline-white">Register &amp; Pay</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-photo">
-          <img src="images/gallery/showdown-huddle.jpg" alt="MN Rush Girls Team Huddle">
         </div>
       </div>
     </div>
@@ -1015,6 +1015,70 @@
     </div>
   </section>
 
+  <!-- ====== SOCIAL / FACEBOOK ====== -->
+  <section id="social">
+    <div class="section-inner fade-up">
+      <div class="section-label">Follow the Rush</div>
+      <div class="section-title">Stay Connected</div>
+      <p class="section-desc">Follow us for game highlights, tournament results, roster announcements, and more.</p>
+      <div class="social-grid">
+        <div>
+          <div class="fb-embed-wrap">
+            <!--
+              FACEBOOK PAGE EMBED SETUP:
+              =============================================
+              1. Go to: https://developers.facebook.com/docs/plugins/page-plugin/
+              2. Enter your page URL: https://www.facebook.com/MinnesotaRush
+              3. Check "Use Small Header", set width to 500, tabs to "timeline"
+              4. Click "Get Code" and copy the iframe version
+              5. Replace the placeholder below with that iframe
+              
+              Example (replace with your generated code):
+            -->
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMinnesotaRush&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true" 
+              width="500" height="600" style="border:none;overflow:hidden;width:100%;" 
+              scrolling="no" frameborder="0" allowfullscreen="true" 
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+        <div>
+          <div class="social-links-panel">
+            <a href="https://www.facebook.com/MinnesotaRush" target="_blank" class="social-link">
+              <div class="social-link-icon fb">FB</div>
+              <div>
+                <strong>Facebook</strong>
+                <span>Minnesota Rush Basketball</span>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/trevor_walton23" target="_blank" class="social-link">
+              <div class="social-link-icon ig">IG</div>
+              <div>
+                <strong>Instagram</strong>
+                <span>@trevor_walton23</span>
+              </div>
+            </a>
+            <a href="https://www.x.com/minnesotarush" target="_blank" class="social-link">
+              <div class="social-link-icon tw">X</div>
+              <div>
+                <strong>X / Twitter</strong>
+                <span>@minnesotarush</span>
+              </div>
+            </a>
+            <a href="https://www.youtube.com/@MNRush-wu1dx" target="_blank" class="social-link">
+              <div class="social-link-icon yt">YT</div>
+              <div>
+                <strong>YouTube</strong>
+                <span>MN Rush Basketball</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ====== PHOTO GALLERY ====== -->
   <section id="gallery" class="bg-light">
     <div class="section-inner fade-up">
@@ -1136,70 +1200,6 @@
     <img id="lightboxImg" src="" alt="">
   </div>
 
-  <!-- ====== SOCIAL / FACEBOOK ====== -->
-  <section id="social">
-    <div class="section-inner fade-up">
-      <div class="section-label">Follow the Rush</div>
-      <div class="section-title">Stay Connected</div>
-      <p class="section-desc">Follow us for game highlights, tournament results, roster announcements, and more.</p>
-      <div class="social-grid">
-        <div>
-          <div class="fb-embed-wrap">
-            <!--
-              FACEBOOK PAGE EMBED SETUP:
-              =============================================
-              1. Go to: https://developers.facebook.com/docs/plugins/page-plugin/
-              2. Enter your page URL: https://www.facebook.com/MinnesotaRush
-              3. Check "Use Small Header", set width to 500, tabs to "timeline"
-              4. Click "Get Code" and copy the iframe version
-              5. Replace the placeholder below with that iframe
-              
-              Example (replace with your generated code):
-            -->
-            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMinnesotaRush&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true" 
-              width="500" height="600" style="border:none;overflow:hidden;width:100%;" 
-              scrolling="no" frameborder="0" allowfullscreen="true" 
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              loading="lazy">
-            </iframe>
-          </div>
-        </div>
-        <div>
-          <div class="social-links-panel">
-            <a href="https://www.facebook.com/MinnesotaRush" target="_blank" class="social-link">
-              <div class="social-link-icon fb">FB</div>
-              <div>
-                <strong>Facebook</strong>
-                <span>Minnesota Rush Basketball</span>
-              </div>
-            </a>
-            <a href="https://www.instagram.com/trevor_walton23" target="_blank" class="social-link">
-              <div class="social-link-icon ig">IG</div>
-              <div>
-                <strong>Instagram</strong>
-                <span>@trevor_walton23</span>
-              </div>
-            </a>
-            <a href="https://www.x.com/minnesotarush" target="_blank" class="social-link">
-              <div class="social-link-icon tw">X</div>
-              <div>
-                <strong>X / Twitter</strong>
-                <span>@minnesotarush</span>
-              </div>
-            </a>
-            <a href="https://www.youtube.com/@MNRush-wu1dx" target="_blank" class="social-link">
-              <div class="social-link-icon yt">YT</div>
-              <div>
-                <strong>YouTube</strong>
-                <span>MN Rush Basketball</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ====== COACHES ====== -->
   <section id="coaches" class="bg-light">
     <div class="section-inner fade-up">
@@ -1207,6 +1207,7 @@
       <div class="section-title">Program Directors</div>
       <div class="directors-grid">
         <div class="director-card">
+          <div class="director-photo"><img src="images/trevor-walton.jpg" alt="Trevor Walton"></div>
           <div class="director-role">Boys Program Director</div>
           <div class="director-name">Trevor Walton</div>
           <p>A 2010 graduate and former player at Maple Grove High School, Trevor is the Varsity Assistant for Rogers Boys Basketball and former head coach of North Branch Boys Basketball.</p>
@@ -1216,6 +1217,7 @@
           </div>
         </div>
         <div class="director-card">
+          <div class="director-photo"><img src="images/james-bezanson.jpg" alt="James Bezanson"></div>
           <div class="director-role">Girls Program Director</div>
           <div class="director-name">James Bezanson</div>
           <p>James took on the girls director role after coaching at the 13U and 14U levels. Previously a Varsity Assistant for North Branch Boys Basketball and currently the High Jump Coach for STMA Track &amp; Field.</p>
