@@ -43,7 +43,7 @@
     },
     "offers": {
       "@type": "Offer",
-      "price": "0",
+      "price": "20",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock"
     }
@@ -211,7 +211,7 @@
     <div class="tryout-hero-content">
       <div class="tryout-hero-label">2027 Season</div>
       <h1>Girls AAU<br>Basketball Tryouts</h1>
-      <p>Open tryouts for all girls grades 4th–9th in the Northwest Twin Cities metro. No experience with MN Rush required. Come compete.</p>
+      <p>Open tryouts for all girls grades 5th–10th in the Northwest Twin Cities metro. No experience with MN Rush required. Come compete.</p>
       <a href="#register" class="btn btn-blue">Register Now &darr;</a>
     </div>
   </section>
@@ -221,21 +221,35 @@
     <div class="section-inner">
       <div class="section-label">Dates &amp; Location</div>
       <div class="section-title">When &amp; Where</div>
-      <div class="dates-grid">
+      <div class="dates-grid" style="grid-template-columns:1fr 1fr 1fr;">
         <div class="date-card">
-          <h3>Session 1</h3>
-          <p><strong>July 29-30, 2026</strong></p>
-          <p>6:00 PM – 9:00 PM</p>
-          <p style="margin-top:0.75rem;"><strong>STMA Middle School West</strong></p>
-          <p>St. Michael, MN</p>
+          <h3>July 29</h3>
+          <p><strong>6:00 - 7:30 PM</strong></p>
+          <p>5th - 6th Grade</p>
+          <p style="margin-top:0.5rem;"><strong>7:30 - 9:00 PM</strong></p>
+          <p>7th - 8th Grade</p>
         </div>
         <div class="date-card">
-          <h3>Session 2</h3>
-          <p><strong>August 8, 2026</strong></p>
-          <p>9:00 AM – 12:00 PM</p>
-          <p style="margin-top:0.75rem;"><strong>STMA Middle School West</strong></p>
-          <p>St. Michael, MN</p>
+          <h3>July 30</h3>
+          <p><strong>6:00 - 7:30 PM</strong></p>
+          <p>7th - 8th Grade</p>
+          <p style="margin-top:0.5rem;"><strong>7:30 - 9:00 PM</strong></p>
+          <p>9th - 10th Grade</p>
         </div>
+        <div class="date-card">
+          <h3>August 8</h3>
+          <p><strong>9:00 - 10:30 AM</strong></p>
+          <p>9th - 10th Grade</p>
+          <p style="margin-top:0.5rem;"><strong>10:30 AM - 12:00 PM</strong></p>
+          <p>5th - 6th Grade</p>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;padding:1.25rem;background:var(--white);border:1px solid var(--gray-200);border-radius:10px;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div>
+          <strong style="font-family:var(--font-head);text-transform:uppercase;font-size:0.9rem;">STMA Middle School West</strong><br>
+          <span style="color:var(--gray-600);font-size:0.9rem;">11343 50th St NE, Albertville, MN 55301</span>
+        </div>
+        <a href="https://maps.google.com/?q=11343+50th+St+NE+Albertville+MN+55301" target="_blank" class="btn btn-blue" style="font-size:0.8rem;padding:0.6rem 1.2rem;margin-left:auto;">Get Directions &rarr;</a>
       </div>
     </div>
   </section>
@@ -248,7 +262,7 @@
       <div class="info-grid">
         <div class="info-item">
           <h4>Who Can Attend</h4>
-          <p>Any girl entering grades 4th–9th for the 2027 school year. Open to all skill levels and schools in the area.</p>
+          <p>Any girl entering grades 5th–10th for the 2027 school year. Open to all skill levels and schools in the area.</p>
         </div>
         <div class="info-item">
           <h4>What to Bring</h4>
@@ -280,12 +294,13 @@
       <div class="section-label">Sign Up</div>
       <div class="section-title">Tryout Registration</div>
       <p style="color:var(--gray-600);font-size:0.95rem;line-height:1.6;margin-bottom:0.5rem;">
-        Fill out the form below to register your player for tryouts. You'll receive a confirmation email with details. Registration is free — season fees are collected after team placement.
+        Fill out the form below to register your player for tryouts. After submitting, you'll be directed to pay the $20 tryout fee. Season fees are collected separately after team placement.
       </p>
 
       <div class="form-success" id="formSuccess">
         <h3>You're Registered!</h3>
-        <p>We've received the registration. You'll get a confirmation email at the address provided. See you at tryouts!</p>
+        <p>We've received the registration. Complete your signup by paying the $20 tryout fee below.</p>
+        <a href="https://buy.stripe.com/dRmaEX69qc2narvb2F9AA01" target="_blank" class="btn btn-blue" style="margin-top:1.25rem;">Pay $20 Tryout Fee &rarr;</a>
         <p style="margin-top:1rem;"><a href="girls.html" style="color:var(--blue);font-weight:600;text-decoration:none;">Learn more about the Girls Program &rarr;</a></p>
       </div>
 
@@ -336,12 +351,12 @@
             <label>Grade (Entering Fall 2027) *</label>
             <select name="grade" required>
               <option value="" disabled selected>Select grade</option>
-              <option value="4th">4th Grade</option>
               <option value="5th">5th Grade</option>
               <option value="6th">6th Grade</option>
               <option value="7th">7th Grade</option>
               <option value="8th">8th Grade</option>
               <option value="9th">9th Grade</option>
+              <option value="10th">10th Grade</option>
             </select>
           </div>
         </div>
@@ -371,13 +386,13 @@
           <label>Which dates can you attend? *</label>
           <div class="checkbox-group">
             <label class="checkbox-label">
-              <input type="checkbox" name="date_july29" value="July 29"> July 29 (6-9 PM)
+              <input type="checkbox" name="date_july29" value="July 29"> July 29 — 5th-6th (6-7:30) / 7th-8th (7:30-9)
             </label>
             <label class="checkbox-label">
-              <input type="checkbox" name="date_july30" value="July 30"> July 30 (6-9 PM)
+              <input type="checkbox" name="date_july30" value="July 30"> July 30 — 7th-8th (6-7:30) / 9th-10th (7:30-9)
             </label>
             <label class="checkbox-label">
-              <input type="checkbox" name="date_aug8" value="August 8"> August 8 (9 AM-12 PM)
+              <input type="checkbox" name="date_aug8" value="August 8"> August 8 — 9th-10th (9-10:30) / 5th-6th (10:30-12)
             </label>
           </div>
         </div>
@@ -388,7 +403,7 @@
         </div>
 
         <button type="submit" class="btn btn-blue form-submit" id="submitBtn">Register for Tryouts &rarr;</button>
-        <p class="form-note">Registration is free. Season fees are collected after team placement.</p>
+        <p class="form-note">$20 tryout fee — you'll be directed to pay after registering.</p>
       </form>
     </div>
   </section>
