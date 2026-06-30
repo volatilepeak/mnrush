@@ -198,7 +198,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('images/gallery/xplosion-layup-02.jpg') center center / cover no-repeat;
+      background: url('images/gallery/xplosion-layup-02.jpg') center 30% / cover no-repeat;
       z-index: 0;
     }
     .hero-bg::after {
@@ -334,6 +334,16 @@
       max-width: 560px;
     }
     .bg-light { background: var(--gray-50); }
+    .section-with-image {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+      margin-bottom: 3rem;
+    }
+    .section-image {
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    .section-image img { width: 100%; display: block; }
+    @media (max-width: 768px) { .section-with-image { grid-template-columns: 1fr; } }
     .bg-black { background: var(--black); color: var(--white); }
     .bg-black .section-title { color: var(--white); }
     .bg-black .section-desc { color: var(--gray-400); }
@@ -793,7 +803,7 @@
     To hide it, delete or comment out the entire div.
   -->
   <div class="announce-bar">
-    &nbsp; Girls Tryouts: July 29-30 &amp; August 8 at STMA Middle School West &nbsp;<a href="girls.html">Learn more &rarr;</a>
+    &nbsp; 2027 Tryout Information &mdash; <a href="girls.html">Click here for details &rarr;</a>
   </div>
 
   <!-- ====== NAV ====== -->
@@ -864,13 +874,20 @@
   <!-- ====== ABOUT ====== -->
   <section id="about" class="bg-light">
     <div class="section-inner fade-up">
-      <div class="section-label">Our Program</div>
-      <div class="section-title">Built on Development.<br>Driven by Competition.</div>
-      <p class="section-desc">
-        Founded in 2017, Minnesota Rush is focused on skill development and 
-        competitive excellence. Our coaches help young athletes achieve their 
-        dreams in basketball and beyond.
-      </p>
+      <div class="section-with-image">
+        <div>
+          <div class="section-label">Our Program</div>
+          <div class="section-title">Built on Development.<br>Driven by Competition.</div>
+          <p class="section-desc">
+            Founded in 2017, Minnesota Rush is focused on skill development and 
+            competitive excellence. Our coaches help young athletes achieve their 
+            dreams in basketball and beyond.
+          </p>
+        </div>
+        <div class="section-image">
+          <img src="images/gallery/state-midwest-team.jpg" alt="MN Rush Team" loading="lazy">
+        </div>
+      </div>
       <div class="pillars">
         <div class="pillar">
           <div class="pillar-num">01</div>
@@ -927,6 +944,9 @@
           </div>
         </div>
         <div class="why-rush-right">
+          <div class="section-image" style="margin-bottom:1.5rem;border:1px solid rgba(255,255,255,0.08);">
+            <img src="images/gallery/xplosion-clipboard.jpg" alt="MN Rush Coaching" loading="lazy">
+          </div>
           <div class="why-identity">
             <h3>How We Play</h3>
             <div>
