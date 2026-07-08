@@ -1387,12 +1387,11 @@
           </div>
         </div>
         <div>
-          <!--
-            CONTACT FORM: Replace YOUR_FORM_ID with your Formspree ID
-            Sign up free at formspree.io (50 submissions/month)
-            Or swap for a Google Form embed
-          -->
-          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div id="contactSuccess" style="display:none;text-align:center;padding:2.5rem;border:2px solid var(--blue);border-radius:14px;background:var(--gray-50);">
+            <h3 style="font-family:var(--font-head);font-weight:700;font-size:1.3rem;text-transform:uppercase;color:var(--blue);margin-bottom:0.5rem;">Message Sent!</h3>
+            <p style="color:var(--gray-600);font-size:0.95rem;">We'll get back to you as soon as possible.</p>
+          </div>
+          <form class="contact-form" id="contactForm" onsubmit="submitContact(event)">
             <div class="form-row">
               <input type="text" name="name" placeholder="Name" required>
               <input type="email" name="email" placeholder="Email" required>
@@ -1408,7 +1407,7 @@
               <option value="other">Other</option>
             </select>
             <textarea name="message" placeholder="Your message..." rows="4" required></textarea>
-            <button type="submit" class="btn btn-black" style="border:none;justify-content:center;">Send Message &rarr;</button>
+            <button type="submit" class="btn btn-black" id="contactBtn" style="border:none;justify-content:center;">Send Message &rarr;</button>
           </form>
         </div>
       </div>
@@ -1506,6 +1505,34 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    // ====== CONTACT FORM ======
+    async function submitContact(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const btn = document.getElementById('contactBtn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        inquiry: form.inquiry.value,
+        message: form.message.value
+      };
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbwGjTbbX5fuSoPGvnjhYMQ-qmlJZ2mvj9Q7R8HZfrSkCHOsXjm-Qaw0nRS2gljvpf-Y/exec', {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        form.style.display = 'none';
+        document.getElementById('contactSuccess').style.display = 'block';
+      } catch (err) {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    }
   </script>
 </body>
 </html>
