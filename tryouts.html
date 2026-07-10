@@ -184,6 +184,16 @@
     .footer-inner p { color: var(--gray-400); font-size: 0.82rem; }
     .footer-inner a { color: var(--gray-400); text-decoration: none; font-size: 0.85rem; margin-left: 1.5rem; }
     .footer-inner a:hover { color: var(--white); }
+
+    /* FAQ */
+    .faq-list { margin-top: 1.5rem; }
+    .faq-item { border-bottom: 1px solid var(--gray-200); }
+    .faq-q { width: 100%; background: none; border: none; color: var(--gray-900); font-family: var(--font-head); font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.02em; padding: 1.25rem 0; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-q::after { content: '+'; font-size: 1.4rem; color: var(--blue); transition: transform 0.3s; flex-shrink: 0; margin-left: 1rem; }
+    .faq-item.open .faq-q::after { content: '\2212'; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a p { color: var(--gray-600); font-size: 0.92rem; line-height: 1.65; padding-bottom: 1.25rem; }
   </style>
 </head>
 <body>
@@ -284,6 +294,67 @@
           <h4>Questions?</h4>
           <p>Email <a href="mailto:girls@mnrush.com" style="color:var(--blue-light);">girls@mnrush.com</a> for any questions about tryouts or the program.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tryout FAQ -->
+  <section class="bg-light">
+    <div class="section-inner" style="max-width:750px;">
+      <div class="section-label">FAQ</div>
+      <div class="section-title">Tryout Questions</div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">What can I expect at tryouts?</button>
+          <div class="faq-a"><p>Players will go through skill evaluation, competitive drills, small-sided games, and scrimmages. Coaches and evaluators assess effort, coachability, basketball IQ, and skill level. Our goal is to give every athlete multiple opportunities to showcase their ability.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Do I need to attend both tryout sessions?</button>
+          <div class="faq-a"><p>Players are strongly encouraged to attend both sessions for their grade. This gives coaches more time to evaluate and gives athletes the best chance to earn a roster spot. However, attending one session does not disqualify you from consideration.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">How many teams will be formed?</button>
+          <div class="faq-a"><p>The number of teams per grade depends on tryout turnout and the quality of the player pool. We may form multiple teams within a grade level. Our goal is to build competitive rosters that can compete at a high level in AAU tournaments across Minnesota.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">How are roster spots offered?</button>
+          <div class="faq-a"><p>Roster spots are offered at the discretion of MN Rush coaches and directors based on tryout performance, evaluator feedback, and previous AAU or winter season experience. Coaches will reach out directly to parents via email or phone to offer a roster spot.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Are there actual roster spots available?</button>
+          <div class="faq-a"><p>Yes. We do not hold courtesy tryouts or invite athletes just to fill a gym. Every player who attends is competing for a real roster spot. If tryouts are listed as open, there are genuine spots available and every athlete has a real opportunity to earn their place.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What if I don't receive an offer?</button>
+          <div class="faq-a"><p>Not all participants are guaranteed a roster spot. If your daughter doesn't receive an offer, it means she has not made a team this season. We appreciate the effort it takes to show up and compete, and we encourage her to keep working and try again next season.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">How do I claim a roster spot once offered?</button>
+          <div class="faq-a"><p>If your daughter receives an offer, you will be asked to register for the team and pay a season deposit to secure the spot. Details on the deposit amount and deadline will be provided with the offer.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What does the season look like?</button>
+          <div class="faq-a"><p>The season runs April through July. Teams practice twice weekly in the STMA area with evenings determined by coach and team availability. Teams play in 6-8+ AAU tournaments depending on age level, primarily in-state with select out-of-state events for older teams.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What should my daughter bring to tryouts?</button>
+          <div class="faq-a"><p>Basketball shoes, a reversible jersey, and a water bottle. We provide the basketballs. Arrive at least 10-15 minutes early to check in.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Does the $20 tryout fee cover both sessions?</button>
+          <div class="faq-a"><p>Yes. The $20 registration fee is a one-time fee that covers all tryout sessions for your daughter's grade. You can pay online or bring cash/check (made out to MN Rush) the day of. All athletes must register before attending.</p></div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -434,6 +505,16 @@
     const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navLinks.classList.toggle('open'); });
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hamburger.classList.remove('open'); navLinks.classList.remove('open'); }));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
 
     // Form submission
     // Replace this URL with your Google Apps Script web app URL
